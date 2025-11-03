@@ -1,11 +1,15 @@
 package com.clinica.clinica.Model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.sql.Timestamp;
 import java.util.Date;
 
 @Entity
+@Getter
+@Setter
 public class Consulta {
 
     @Id
@@ -16,29 +20,10 @@ public class Consulta {
 
     @ManyToOne
     private Paciente paciente;
-    //colocar o medico e o prontuario
 
-    public Date getDataConsulta() {
-        return dataConsulta;
-    }
+    @ManyToOne
+    private Medico medico;
 
-    public void setDataConsulta(Date dataConsulta) {
-        this.dataConsulta = dataConsulta;
-    }
+    //fazeer o prontuario
 
-    public Date getHoraConsulta() {
-        return horaConsulta;
-    }
-
-    public void setHoraConsulta(Date horaConsulta) {
-        this.horaConsulta = horaConsulta;
-    }
-
-    public Paciente getPaciente() {
-        return paciente;
-    }
-
-    public void setPaciente(Paciente paciente) {
-        this.paciente = paciente;
-    }
 }
