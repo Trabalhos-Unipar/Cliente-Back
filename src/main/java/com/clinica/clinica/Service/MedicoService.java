@@ -1,7 +1,9 @@
 package com.clinica.clinica.Service;
 
+import com.clinica.clinica.Model.HorarioAtendimento;
 import com.clinica.clinica.Repository.MedicoRepository;
 import com.clinica.clinica.Model.Medico;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
@@ -17,13 +19,21 @@ public class MedicoService {
         this.medicoRepository = medicoRepository;
     }
 
+    @Transactional //garante que medico e horario sejam salvos na mesma transação
+    public Medico salvarMedico(Medico medico) {
+        //caso a lista de horario n for nula, é preciso dizer para cada horario qm é o medico pai
+        if (medico.getHorarios() != null && !medico.getHorarios().isEmpty()) {
+            for (HorarioAtendimento horario : medico.getHorarios()) {
+                horario.setMedico(medico);
+            }
+        }
+        return medicoRepository.save(medico);
+    }
+
     public List<Medico> listarTodosCLientes() {
         return medicoRepository.findAll();
     }
 
-    public Medico salvarMedico(Medico medico) {
-        return medicoRepository.save(medico);
-    }
 
     public Medico buscarMedicoPorId(Long id) {
         return medicoRepository
@@ -34,10 +44,9 @@ public class MedicoService {
         medicoRepository.deleteById(id);
     }
 
-    public Medico atualizarMedico(Long id, Medico medico) {
-        Medico medicoSalvo = buscarMedicoPorId(id);
-        BeanUtils.copyProperties(medico, medicoSalvo, "id");
-        return medicoRepository.save(medicoSalvo);
+    public Medico atualizarMedico(Long id, Medico medicoAtualizado) {
+        medicoAtualizado.setId(id);
+        return medicoRepository.save(medicoAtualizado);
     }
 
 }
