@@ -23,6 +23,7 @@ public class MedicoService {
     public Medico salvarMedico(Medico medico) {
         //caso a lista de horario n for nula, é preciso dizer para cada horario qm é o medico pai
         if (medico.getHorarios() != null && !medico.getHorarios().isEmpty()) {
+            //percorre a lista de horarios e para cada horario indica quem é o medico 
             for (HorarioAtendimento horario : medico.getHorarios()) {
                 horario.setMedico(medico);
             }

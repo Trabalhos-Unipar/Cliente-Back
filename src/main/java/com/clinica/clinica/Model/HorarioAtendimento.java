@@ -13,7 +13,6 @@ import java.time.LocalTime;
 @Setter
 @Table(name = "horario_atendimento")
 public class HorarioAtendimento {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
