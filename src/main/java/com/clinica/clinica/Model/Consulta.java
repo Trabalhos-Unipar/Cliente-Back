@@ -57,4 +57,12 @@ public class Consulta {
     public void setMedico(Medico medico) {
         this.medico = medico;
     }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }

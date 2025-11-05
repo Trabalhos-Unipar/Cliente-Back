@@ -28,6 +28,9 @@ public class ConsultaService {
 
     @Transactional
     public Consulta salvarConsulta(Consulta consulta) {
+        if (consulta.getHorarioAtendimento() == null || consulta.getHorarioAtendimento().getId() == null) {
+            throw new RuntimeException("A consulta deve estar associada a um ID de horário de atendimento válido.");
+        }
         Long horarioId = consulta.getHorarioAtendimento().getId();
         HorarioAtendimento horarioParaMarcar = horarioAtendimentoRepository.findById(horarioId)
                 .orElseThrow(() -> new RuntimeException("Horário de ID " + horarioId + " não encontrado."));
