@@ -1,5 +1,6 @@
 package com.clinica.clinica.Model;
 
+import com.clinica.clinica.Enum.DiaSemanaEnum;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
@@ -17,7 +18,7 @@ public class HorarioAtendimento {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "dia_semana", nullable = false)
-    private DayOfWeek diaSemana;
+    private DiaSemanaEnum diaSemana;
 
     @Column(name = "hora_inicio", nullable = false)
     private LocalTime horaInicio;
@@ -57,11 +58,11 @@ public class HorarioAtendimento {
         this.id = id;
     }
 
-    public DayOfWeek getDiaSemana() {
+    public DiaSemanaEnum getDiaSemana() {
         return diaSemana;
     }
 
-    public void setDiaSemana(DayOfWeek diaSemana) {
+    public void setDiaSemana(DiaSemanaEnum diaSemana) {
         this.diaSemana = diaSemana;
     }
 

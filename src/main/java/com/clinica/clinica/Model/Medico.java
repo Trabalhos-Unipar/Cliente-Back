@@ -9,10 +9,10 @@ import java.util.List;
 @Entity
 public class Medico extends Pessoa {
 
-    @Column(name = "crm", unique = true, nullable = false)
+    @Column(name = "crm", unique = true)
     private String crm;
 
-    @Column(name = "especialidade", nullable = false)
+    @Column(name = "especialidade")
     private String especialidade;
 
     @OneToMany(
