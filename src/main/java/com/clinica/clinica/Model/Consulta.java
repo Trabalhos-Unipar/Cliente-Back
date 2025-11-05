@@ -12,6 +12,10 @@ public class Consulta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name="status")
+    private String status;
+    
     @OneToOne
     private HorarioAtendimento horarioAtendimento;
 
