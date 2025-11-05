@@ -7,8 +7,6 @@ import lombok.Setter;
 import java.util.List;
 
 @Entity
-@Getter
-@Setter
 public class Medico extends Pessoa {
 
     @Column(name = "crm", unique = true, nullable = false)
@@ -35,4 +33,19 @@ public class Medico extends Pessoa {
         this.horarios = horarios;
     }
 
+    public String getCrm() {
+        return crm;
+    }
+
+    public void setCrm(String crm) {
+        this.crm = crm;
+    }
+
+    public String getEspecialidade() {
+        return especialidade;
+    }
+
+    public void setEspecialidade(String especialidade) {
+        this.especialidade = especialidade;
+    }
 }

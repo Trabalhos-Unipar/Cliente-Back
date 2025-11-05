@@ -20,7 +20,7 @@ public class ConsultaController {
 
     @GetMapping("/listar")
     public List<Consulta> listarTodosConsulta() {
-        return consultaService.listarTodosCLientes();
+        return consultaService.listarTodoConsultas();
     }
 
     @PostMapping("/salvar-consulta")

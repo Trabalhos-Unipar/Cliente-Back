@@ -5,8 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Getter
-@Setter
 public class Especialidade {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,4 +13,20 @@ public class Especialidade {
 
     @Column(name="especialidade")
     private String especialidade;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getEspecialidade() {
+        return especialidade;
+    }
+
+    public void setEspecialidade(String especialidade) {
+        this.especialidade = especialidade;
+    }
 }

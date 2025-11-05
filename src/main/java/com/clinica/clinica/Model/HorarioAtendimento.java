@@ -2,15 +2,12 @@ package com.clinica.clinica.Model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 
 @Entity
-@Getter
-@Setter
 @Table(name = "horario_atendimento")
 public class HorarioAtendimento {
     @Id
@@ -33,11 +30,30 @@ public class HorarioAtendimento {
     @JsonBackReference //indica que é o filho
     private Medico medico;
 
+    @Column(name = "marcado")
+    private Boolean marcado;
+
     public Medico getMedico() {
         return medico;
     }
 
     public void setMedico(Medico medico) {
         this.medico = medico;
+    }
+
+    public Boolean getMarcado() {
+        return marcado;
+    }
+
+    public void setMarcado(Boolean marcado) {
+        this.marcado = marcado;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
