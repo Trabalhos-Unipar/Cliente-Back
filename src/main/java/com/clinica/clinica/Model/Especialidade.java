@@ -10,7 +10,6 @@ public class Especialidade {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
-
     @Column(name="especialidade")
     private String especialidade;
 

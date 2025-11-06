@@ -1,5 +1,6 @@
 package com.clinica.clinica.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -24,6 +25,10 @@ public class Medico extends Pessoa {
     @Column(name = "especialidade")
     @JsonManagedReference //indica que é o pai
     private List<HorarioAtendimento> horarios;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "medico")
+    private List<Consulta> consultas;
 
     public List<HorarioAtendimento> getHorarios() {
         return horarios;

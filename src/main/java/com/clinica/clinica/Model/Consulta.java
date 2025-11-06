@@ -13,17 +13,20 @@ public class Consulta {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="status")
+    @Column(name = "status")
     private String status;
-    
-    @OneToOne
-    private HorarioAtendimento horarioAtendimento;
 
     @ManyToOne
+    @JoinColumn(name = "paciente_id")
     private Paciente paciente;
 
     @ManyToOne
+    @JoinColumn(name = "medico_id")
     private Medico medico;
+
+    @OneToOne
+    @JoinColumn(name = "horario_atendimento_id")
+    private HorarioAtendimento horarioAtendimento;
 
     public HorarioAtendimento getHorarioAtendimento() {
         return horarioAtendimento;

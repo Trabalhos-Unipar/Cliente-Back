@@ -11,21 +11,17 @@ import java.time.LocalTime;
 @Entity
 @Table(name = "horario_atendimento")
 public class HorarioAtendimento {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-
     @Enumerated(EnumType.STRING)
     @Column(name = "dia_semana", nullable = false)
     private DiaSemanaEnum diaSemana;
-
     @Column(name = "hora_inicio", nullable = false)
     private LocalTime horaInicio;
-
     @Column(name = "hora_fim", nullable = false)
     private LocalTime horaFim;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "medico_id", nullable = false)
     @JsonBackReference //indica que é o filho

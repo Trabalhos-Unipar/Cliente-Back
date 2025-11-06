@@ -23,7 +23,7 @@ public class ConsultaService {
     }
 
     public List<Consulta> listarTodoConsultas() {
-        return consultaRepository.findAll();
+        return consultaRepository.findAllComDetalhes();
     }
 
     @Transactional
@@ -51,8 +51,16 @@ public class ConsultaService {
                 .findById(id).orElseThrow(() -> new RuntimeException("Consulta de ID " + id + " não encontrada"));
     }
 
+    @Transactional
     public void deletarConsultaPorId(Long id) {
-        consultaRepository.deleteById(id);
+        Consulta consultaParaDeletar = buscarConsultaPorId(id);
+
+        if (consultaParaDeletar.getHorarioAtendimento() != null) {
+            HorarioAtendimento horario = consultaParaDeletar.getHorarioAtendimento();
+            horario.setMarcado(false);
+        }
+
+        consultaRepository.delete(consultaParaDeletar);
     }
 
     public Consulta atualizarConsulta(Long id, Consulta consulta) {
@@ -61,5 +69,3 @@ public class ConsultaService {
         return consultaRepository.save(consultaSalvo);
     }
 }
-//arruma o metodo de deletar consulta, quando deletar a consilta tem que liberar o horario caso tenha marcado
-//uma consulta nesse horario, faz verificação com um if
