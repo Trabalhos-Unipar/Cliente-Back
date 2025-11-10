@@ -46,6 +46,15 @@ public class ConsultaService {
         return consultaRepository.save(consulta);
     }
 
+    @Transactional
+    public Consulta concluirConsulta(Long id) {
+        Consulta consultaParaConcluir = buscarConsultaPorId(id);
+
+        consultaParaConcluir.setStatus("CONCLUIDA");
+
+        return consultaRepository.save(consultaParaConcluir);
+    }
+
     public Consulta buscarConsultaPorId(Long id) {
         return consultaRepository
                 .findById(id).orElseThrow(() -> new RuntimeException("Consulta de ID " + id + " não encontrada"));

@@ -3,6 +3,7 @@ package com.clinica.clinica.Controller;
 
 import com.clinica.clinica.Model.Consulta;
 import com.clinica.clinica.Service.ConsultaService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,6 +17,19 @@ public class ConsultaController {
 
     public ConsultaController(ConsultaService consultaService) {
         this.consultaService = consultaService;
+    }
+
+
+    @PatchMapping("/concluir/{id}")
+    public ResponseEntity<Consulta> concluirConsulta(@PathVariable Long id) {
+        try {
+            Consulta consultaConcluida = consultaService.concluirConsulta(id);
+
+            return ResponseEntity.ok(consultaConcluida);
+        } catch (RuntimeException e) {
+          
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @GetMapping("/listar")
