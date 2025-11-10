@@ -13,7 +13,7 @@ import java.util.List;
 @Entity
 public class Paciente extends Pessoa {
 
-    @JsonFormat(pattern="dd/MM/yyyy")
+    @JsonFormat(pattern="yyyy/MM/dd")
     private Date dataNascimento;
 
     @JsonIgnore

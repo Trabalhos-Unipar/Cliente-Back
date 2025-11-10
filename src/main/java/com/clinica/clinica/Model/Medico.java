@@ -22,7 +22,6 @@ public class Medico extends Pessoa {
             orphanRemoval = true,
             fetch = FetchType.LAZY
     )
-    @Column(name = "especialidade")
     @JsonManagedReference //indica que é o pai
     private List<HorarioAtendimento> horarios;
 

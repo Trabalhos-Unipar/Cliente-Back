@@ -16,14 +16,14 @@ public class HorarioAtendimento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Enumerated(EnumType.STRING)
-    @Column(name = "dia_semana", nullable = false)
+    @Column(name = "dia_semana", nullable = true)
     private DiaSemanaEnum diaSemana;
-    @Column(name = "hora_inicio", nullable = false)
+    @Column(name = "hora_inicio", nullable = true)
     private LocalTime horaInicio;
-    @Column(name = "hora_fim", nullable = false)
+    @Column(name = "hora_fim", nullable = true)
     private LocalTime horaFim;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "medico_id", nullable = false)
+    @JoinColumn(name = "medico_id", nullable = true)
     @JsonBackReference //indica que é o filho
     private Medico medico;
 
