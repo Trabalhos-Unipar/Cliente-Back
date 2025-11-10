@@ -1,5 +1,6 @@
 package com.clinica.clinica.Model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
@@ -12,6 +13,7 @@ import java.util.List;
 @Entity
 public class Paciente extends Pessoa {
 
+    @JsonFormat(pattern="dd/MM/yyyy")
     private Date dataNascimento;
 
     @JsonIgnore
