@@ -19,8 +19,8 @@ public class MedicoController {
     }
 
     @GetMapping("/listar")
-    public List<Medico> listarTodosMedico() {
-        return medicoService.listarTodosCLientes();
+    public List<Medico> listarTodosMedicos() {
+        return medicoService.listarTodosMedicos();
     }
 
     @PostMapping("/salvar-medico")

@@ -42,5 +42,9 @@ public class ProntuarioController {
     public Prontuario atualizarProntuarioPorId(@PathVariable Long id, @RequestBody Prontuario prontuario) {
         return prontuarioService.atualizarProntuario(id, prontuario);
     }
+    @GetMapping("/consulta/{consultaId}")
+    public Prontuario buscarProntuarioPorConsulta(@PathVariable Long consultaId) {
+        return prontuarioService.buscarPorConsulta(consultaId);
+    }
 }
 

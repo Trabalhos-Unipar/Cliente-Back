@@ -29,7 +29,7 @@ public class MedicoService {
         return medicoRepository.save(medico);
     }
 
-    public List<Medico> listarTodosCLientes() {
+    public List<Medico> listarTodosMedicos() {
         return medicoRepository.findAll();
     }
 

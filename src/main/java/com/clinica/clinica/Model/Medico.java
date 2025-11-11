@@ -22,7 +22,7 @@ public class Medico extends Pessoa {
             orphanRemoval = true,
             fetch = FetchType.LAZY
     )
-    @JsonManagedReference //indica que é o pai
+    @JsonManagedReference
     private List<HorarioAtendimento> horarios;
 
     @JsonIgnore

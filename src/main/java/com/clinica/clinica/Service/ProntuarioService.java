@@ -39,5 +39,8 @@ public class ProntuarioService {
         BeanUtils.copyProperties(prontuario, prontuarioSalvo, "id");
         return prontuarioRepository.save(prontuarioSalvo);
     }
+    public Prontuario buscarPorConsulta(Long consultaId) {
+        return prontuarioRepository.findByConsultaId(consultaId).orElse(null);
+    }
 
 }

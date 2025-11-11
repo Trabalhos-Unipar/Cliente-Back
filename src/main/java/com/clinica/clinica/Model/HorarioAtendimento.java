@@ -24,7 +24,7 @@ public class HorarioAtendimento {
     private LocalTime horaFim;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "medico_id", nullable = true)
-    @JsonBackReference //indica que é o filho
+    @JsonBackReference
     private Medico medico;
 
 
