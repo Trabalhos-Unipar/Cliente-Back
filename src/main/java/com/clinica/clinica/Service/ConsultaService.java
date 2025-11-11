@@ -15,11 +15,9 @@ import java.util.List;
 public class ConsultaService {
 
     private final ConsultaRepository consultaRepository;
-    private final HorarioAtendimentoRepository horarioAtendimentoRepository;
 
     public ConsultaService(ConsultaRepository consultaRepository, HorarioAtendimentoRepository horarioAtendimentoRepository) {
         this.consultaRepository = consultaRepository;
-        this.horarioAtendimentoRepository = horarioAtendimentoRepository;
     }
 
     public List<Consulta> listarTodoConsultas() {
@@ -28,21 +26,9 @@ public class ConsultaService {
 
     @Transactional
     public Consulta salvarConsulta(Consulta consulta) {
-        if (consulta.getHorarioAtendimento() == null || consulta.getHorarioAtendimento().getId() == null) {
-            throw new RuntimeException("A consulta deve estar associada a um ID de horário de atendimento válido.");
+        if (consulta.getHoraConsulta() == null || consulta.getDiaConsulta() == null) {
+            throw new RuntimeException("A consulta deve estar associada a um dia e/ou hora válidos");
         }
-        Long horarioId = consulta.getHorarioAtendimento().getId();
-        HorarioAtendimento horarioParaMarcar = horarioAtendimentoRepository.findById(horarioId)
-                .orElseThrow(() -> new RuntimeException("Horário de ID " + horarioId + " não encontrado."));
-
-        if (horarioParaMarcar.getMarcado() != null && horarioParaMarcar.getMarcado()) {
-            throw new RuntimeException("Este horário (" + horarioId + ") já está reservado.");
-        }
-
-        horarioParaMarcar.setMarcado(true);
-
-        consulta.setHorarioAtendimento(horarioParaMarcar);
-
         return consultaRepository.save(consulta);
     }
 
@@ -62,14 +48,7 @@ public class ConsultaService {
 
     @Transactional
     public void deletarConsultaPorId(Long id) {
-        Consulta consultaParaDeletar = buscarConsultaPorId(id);
-
-        if (consultaParaDeletar.getHorarioAtendimento() != null) {
-            HorarioAtendimento horario = consultaParaDeletar.getHorarioAtendimento();
-            horario.setMarcado(false);
-        }
-
-        consultaRepository.delete(consultaParaDeletar);
+        consultaRepository.deleteById(id);
     }
 
     public Consulta atualizarConsulta(Long id, Consulta consulta) {

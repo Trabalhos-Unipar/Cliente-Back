@@ -1,9 +1,11 @@
 package com.clinica.clinica.Model;
 
+import com.clinica.clinica.Enum.DiaSemanaEnum;
 import jakarta.persistence.*;
 
 
 import java.sql.Timestamp;
+import java.time.LocalTime;
 import java.util.Date;
 
 @Entity
@@ -24,16 +26,26 @@ public class Consulta {
     @JoinColumn(name = "medico_id")
     private Medico medico;
 
-    @OneToOne
-    @JoinColumn(name = "horario_atendimento_id")
-    private HorarioAtendimento horarioAtendimento;
+    @Column(name = "diaConsulta")
+    private DiaSemanaEnum diaConsulta;
 
-    public HorarioAtendimento getHorarioAtendimento() {
-        return horarioAtendimento;
+    @Column(name = "horaConsulta")
+    private LocalTime horaConsulta;
+
+    public DiaSemanaEnum getDiaConsulta() {
+        return diaConsulta;
     }
 
-    public void setHorarioAtendimento(HorarioAtendimento horarioAtendimento) {
-        this.horarioAtendimento = horarioAtendimento;
+    public void setDiaConsulta(DiaSemanaEnum diaConsulta) {
+        this.diaConsulta = diaConsulta;
+    }
+
+    public LocalTime getHoraConsulta() {
+        return horaConsulta;
+    }
+
+    public void setHoraConsulta(LocalTime horaConsulta) {
+        this.horaConsulta = horaConsulta;
     }
 
     public Long getId() {

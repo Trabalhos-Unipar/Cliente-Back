@@ -10,7 +10,7 @@ import java.util.List;
 @RestController
 
 @RequestMapping("/paciente")
-public class PacienteController {
+public class    PacienteController {
 
     private final PacienteService pacienteService;
 
@@ -20,7 +20,7 @@ public class PacienteController {
 
     @GetMapping("/listar")
     public List<Paciente> listarTodosPaciente() {
-        return pacienteService.listarTodosCLientes();
+        return pacienteService.listarTodosPacientes();
     }
 
     @PostMapping("/salvar-paciente")

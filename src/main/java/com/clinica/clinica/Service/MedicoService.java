@@ -19,11 +19,9 @@ public class MedicoService {
         this.medicoRepository = medicoRepository;
     }
 
-    @Transactional //garante que medico e horario sejam salvos na mesma transação
+    @Transactional
     public Medico salvarMedico(Medico medico) {
-        //caso a lista de horario n for nula, é preciso dizer para cada horario qm é o medico pai
         if (medico.getHorarios() != null && !medico.getHorarios().isEmpty()) {
-            //percorre a lista de horarios e para cada horario indica quem é o medico 
             for (HorarioAtendimento horario : medico.getHorarios()) {
                 horario.setMedico(medico);
             }
@@ -45,9 +43,13 @@ public class MedicoService {
         medicoRepository.deleteById(id);
     }
 
+    @Transactional
     public Medico atualizarMedico(Long id, Medico medicoAtualizado) {
-        medicoAtualizado.setId(id);
-        return medicoRepository.save(medicoAtualizado);
+        Medico medicoExistente = buscarMedicoPorId(id);
+
+        BeanUtils.copyProperties(medicoAtualizado, medicoExistente, "id");
+
+        return medicoRepository.save(medicoExistente);
     }
 
 }

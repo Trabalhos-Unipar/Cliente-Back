@@ -27,7 +27,7 @@ public class ConsultaController {
 
             return ResponseEntity.ok(consultaConcluida);
         } catch (RuntimeException e) {
-          
+
             return ResponseEntity.notFound().build();
         }
     }

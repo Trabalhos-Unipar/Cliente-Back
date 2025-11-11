@@ -10,8 +10,7 @@ import java.util.List;
 public interface ConsultaRepository extends JpaRepository<Consulta, Long> {
     @Query("SELECT c FROM Consulta c " +
             "JOIN FETCH c.paciente " +
-            "JOIN FETCH c.medico " +
-            "JOIN FETCH c.horarioAtendimento")
+            "JOIN FETCH c.medico" )
     List<Consulta> findAllComDetalhes();
 }
 
